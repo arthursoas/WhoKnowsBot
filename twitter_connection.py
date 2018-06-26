@@ -1,10 +1,10 @@
 import twitter
 from twitter import error
 
-consumerKey = ''
-consumerSecret = ''
-accessToken = ''
-accessTokenSecret = ''
+consumerKey = 'eee'
+consumerSecret = 'eee'
+accessToken = '914934462030520321-eee'
+accessTokenSecret = 'eee'
 
 
 def open_connection():
