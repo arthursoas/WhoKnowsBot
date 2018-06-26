@@ -12,8 +12,6 @@ class MentionsReplies(object):
         reply = "@" + user + " Ops @" + user + ", verifique se você tweetou como o exemplo que eu coloquei aqui: " \
                 "https://twitter.com/WhoKnowsBot/status/1009919330006589440"
 
-        print(reply)
-
         # Post the reply on Twitter
         try:
             self.api.PostUpdate(status=reply, in_reply_to_status_id=mention_id)
