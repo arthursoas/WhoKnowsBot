@@ -5,7 +5,7 @@
  
  <p>De forma geral, o robô possui duas funcionalidades principais que podem ser acionadas pelo usuário: atribuição e agregação. Pela funcionalidade de atribuição (escalonamento), o usuário informa ao robô um tópico e o robô responde ao usuário quem (entre as pessoa que seguem o usuário no twitter) mais fala sobre aquele tópico no twitter. Pela funcionalidade de agregação, o usuário informa ao robô um tópico e o robô responde ao usuário quantas (entre as pessoa o usuário segue no twitter) falaram sobre aquele tópico no twitter. </p>
  
- <p>Há uma instância do robô ativa em https://twitter.com/whoknowsbot Informações sobre como conversar com o robô e explicações sobre as respostas dele estão em https://drive.google.com/file/d/1jhFCTByFLM2uOGsqa_BUB0BR9FarKnlV/view. <p>
+ <p>Há uma instância do robô ativa em https://twitter.com/whoknowsbot Informações sobre como conversar com o robô e explicações sobre as respostas dele estão em https://drive.google.com/file/d/1jhFCTByFLM2uOGsqa_BUB0BR9FarKnlV/view.<p>
  
  Abaixo estão mais informações sobre a implementação do robô.
  
