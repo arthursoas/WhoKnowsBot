@@ -3,7 +3,7 @@
   <p><strong>@author: </strong>Arthur Vinicius soares P.</p>
   </tr>
   <h3> Configuração inicial</h3>
-  <p>Em twitterBotManage/twitter_connection.py atribuir valores às variáveis:</p>
+  <p>Em twitter_connection.py atribuir valores às variáveis:</p>
   
   <pre>
     - consumerKey
@@ -12,7 +12,7 @@
     - accessTokenSecret
   </pre>
   
-  <p>Essas informações estão disponíveis na página para desenvolvedores do Twitter: <br/>
+  <p>Essas informações estão disponíveis na página para desenvolvedores do Twitter <a>https://apps.twitter.com</a>: <br/>
   ex:</p>
   
   <pre>
@@ -36,33 +36,24 @@
   
   <br/>
   <h3>Análise das menções</h3>
-  <p>O script é composto por 2 arquivos principais:</p>
-  <pre>
-    <i>manage_mentions.py</i>
-    <i>analyze_mentions.py</i>
-  </pre>
-  
   <br/>
-  <p><strong>Inicia-se chamando o arquivo <i>manage_mentions.py</i></strong></p>
-  <p>A função <i>AnalyzeMentions()</i> é a primeira função a ser chamada no script.<br>
-  Ela é responsável por chamar a função de coleta de novas menções, e determinar qual a próxima função a ser chamada de acordo com o conteúdo da menção.</p>
+  <p>A função <i>listener()</i> é a primeira função a ser chamada no script.<br>
+  Ela é responsável pela coleta de novas menções, e determinar qual a próxima função a ser chamada de acordo com o conteúdo da menção.</p>
   <p>Para cada menção que é coletada, a string com seu conteúdo é quebrada, e verifica-se se o termo que o usuário utilizou. As opções padrões são limitadas ao uso dos termos QUEMSABE e QUANTOSSABEM.<br/>
 A forma como será decidido qual fluxo seguir pode ser personalizada conforme o uso que será dado ao script.</p>
   
   <h3>Quantos sabem</h3>
   <p><u>Essa análise foca em descobrir quantos amigos falaram sobre um termo.</u></p>
   
-  <p>É feita a coleta das publicações de quem o mencionador segue (amigos), que foram criadas até 7 dias precedentes ao início da análise e que possuem em seu conteúdo um termo especificado na menção. Através da função <i>GetFriendPostsTerm(term)</i> é retornado um vetor com as publicações.<br/>
-  Cada item do vetor é iterado buscando alguma publicação com um termo especificado na menção.<br/>
-  Ao final, verifica-se quantos amigos analisados usaram o termo especificado em alguma de suas publicações.</p>
-  
+  <p>É feita a coleta das publicações de quem o mencionador segue (amigos), que foram criadas até 7 dias precedentes ao início da análise e que possuem em seu conteúdo um termo especificado na menção. A função <i>how_many_knows(self, mention)</i> busca quais amigos utilizaram o termo em seus tweets e faz uma contagem desses amigos.</p>
+  <br/>
   <p>Veja abaixo o diagrama de sequência que representa essa análise:</p>
   <img src="https://preview.ibb.co/mvy4So/image1.jpg" alt="image1" border="0">
   
   <h3>Quem sabe</h3>
   <p><u>Essa análise foca em descobrir quem é o melhor seguidor para responder algo sobre um termo.</u></p>
   
-  <p>É feita a coleta das publicações de quem segue o mencionador (seguidores), que foram criadas até 7 dias precedentes ao início da análise e que possuem em seu conteúdo um termo especificado na menção. Através da função <i>GetFollowerPostsTerm(term)</i> é retornado um vetor com as publicações.<br/>
+  <p>É feita a coleta das publicações de quem segue o mencionador (seguidores), que foram criadas até 7 dias precedentes ao início da análise e que possuem em seu conteúdo um termo especificado na menção. A da função <i>who_knows(self, mention)</i> busca quais seguidores utilizaram o termo em seus tweets.<br/>
   Em seguida, busca-se a publicação mais antiga, que servirá de referência para selecionar o melhor seguidor.<br/>
   Para cada seguidor é feito o cálculo de uma pontuação que representa sua aptidão para responder alguma pergunta sobre o termo especificado. Sua pontuação aumenta a cada publicação que possui o termo, conforme a fórmula abaixo:</p>
   
@@ -82,15 +73,17 @@ A forma como será decidido qual fluxo seguir pode ser personalizada conforme o 
   <img src="https://preview.ibb.co/dGL17o/image3.jpg" alt="image3" border="0">
   
   <h3>Respostas</h3>
-  <p>Após a análise de cada menção, o mencionador é respondido, conforme o resultado, podendo ser:</br>
+  <p>Após a análise de cada menção, o mencionador é respondido, conforme o resultado opções dispiníveis no arquivo <i>mentions_replies.py</i>, podendo ser:</br>
   Para análise do tipo QUANTOSSABEM:</p>
   <pre>
-    - ReplyMentionHowMany(mentionId, user, usersQuantity) //Quando algum amigo falou sobre o termo
-    - ReplyMentionNoneHowMany(mentionId, user) //Quando ninguém falou sobre o termo 
+    - reply_mention_how_many(self, mention_id, term, user, users_amount)
   </pre>
   <p>Para análise do tipo QUEMSABE:</p>
   <pre>
-    - ReplyMentionWho(mentionId, user, candidate) //Quando algum seguidor foi escolhido
-    - ReplyMentionNoneWho(mentionId, user) //Quando ninguém falou sobre o termo
+    - reply_mention_who_know(self, mention_id, term, user, suitable_user)
+  </pre>
+  <p>Ou para menções em formato inválido:</p>
+  <pre>
+    - reply_invalid_tweet(self, mention_id, user)
   </pre>
 </html>
