@@ -1,6 +1,14 @@
 # WhoKnowsBot
 <html>
-  <p><strong>@author: </strong>Arthur Vinicius soares P.</p>
+  <h3> Overview do projeto</h3>
+  <p>WhoKnowsBot é um robô social. Ele  foi desenvolvido como um estudo de caso sobre desenvolvimento de componentes de software associados a computação por humanos (human computation). O estudo é parte do projeto PIBIC-CNPq coordenado pelo prof. Lesandro Ponciano e conduzido pelo aluno bolsista Arthur Vinicius Soares, no curso Bacharelado em Sistemas de Informação da Pontifícia Universidade Católica de Minas Gerais (PUC Minas). O projeto foi executado entre Agosto de 2017 e Julho de 2018.</p>
+ 
+ <p>De forma geral, o robô possui duas funcionalidades principais que podem ser acionadas pelo usuário: atribuição e agregação. Pela funcionalidade de atribuição (escalonamento), o usuário informa ao robô um tópico e o robô responde ao usuário quem (entre as pessoa que seguem o usuário no twitter) mais fala sobre aquele tópico no twitter. Pela funcionalidade de agregação, o usuário informa ao robô um tópico e o robô responde ao usuário quantas (entre as pessoa o usuário segue no twitter) falaram sobre aquele tópico no twitter. </p>
+ 
+ <p>Há uma instância do robô ativa em https://twitter.com/whoknowsbot Informações sobre como conversar com o robô e explicações sobre as respostas dele estão em https://drive.google.com/file/d/1jhFCTByFLM2uOGsqa_BUB0BR9FarKnlV/view.<p>
+ 
+ Abaixo estão mais informações sobre a implementação do robô.
+ 
   </tr>
   <h3> Configuração inicial</h3>
   <p>Em twitter_connection.py atribuir valores às variáveis:</p>
